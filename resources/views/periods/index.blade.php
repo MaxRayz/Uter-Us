@@ -31,7 +31,8 @@
                                 <td class="border-b p-3">
                                     {{ $period->end_date ? $period->end_date->format('M d, Y') : 'Ongoing' }}</td>
                                 <td class="border-b p-3">{{ $period->symptoms }}</td>
-                                <td class="border-b p-3 flex space-x-3">
+                                <td class="border-b p-3">
+                                    <div class="flex space-x-3">
                                     <a href="{{ route('periods.edit', $period) }}"
                                         class="text-blue-600 hover:underline">Edit</a>
                                     <form action="{{ route('periods.destroy', $period) }}" method="POST"
@@ -39,6 +40,7 @@
                                         @csrf @method('DELETE')
                                         <button type="submit" class="text-red-600 hover:underline">Delete</button>
                                     </form>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
