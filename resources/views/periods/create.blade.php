@@ -1,41 +1,60 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Log New Cycle') }}</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Log New Cycle</h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow-sm sm:rounded-lg p-6">
-                <form action="{{ route('periods.store') }}" method="POST" class="space-y-4">
+        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white shadow-sm sm:rounded-xl p-8">
+
+                <form action="{{ route('periods.store') }}" method="POST" class="space-y-6">
                     @csrf
+
                     <div>
-                        <label class="block text-gray-700 font-bold mb-2">Start Date *</label>
-                        <input type="date" name="start_date" required
-                            class="w-full border-gray-300 rounded-md shadow-sm" value="{{ old('start_date') }}">
-                        @error('start_date') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                        <label for="start_date" class="block text-sm font-medium text-gray-700 mb-1">Start Date <span class="text-rose-500">*</span></label>
+                        <input type="date" id="start_date" name="start_date" required
+                            value="{{ old('start_date') }}"
+                            class="w-full rounded-lg border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 text-sm">
+                        @error('start_date')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
+
                     <div>
-                        <label class="block text-gray-700 font-bold mb-2">End Date (Optional)</label>
-                        <input type="date" name="end_date" class="w-full border-gray-300 rounded-md shadow-sm"
-                            value="{{ old('end_date') }}">
-                        @error('end_date') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                        <label for="end_date" class="block text-sm font-medium text-gray-700 mb-1">End Date <span class="text-gray-400 font-normal">(optional)</span></label>
+                        <input type="date" id="end_date" name="end_date"
+                            value="{{ old('end_date') }}"
+                            class="w-full rounded-lg border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 text-sm">
+                        @error('end_date')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
+
                     <div>
-                        <label class="block text-gray-700 font-bold mb-2">Symptoms</label>
-                        <input type="text" name="symptoms" placeholder="e.g. Cramps, Headache"
-                            class="w-full border-gray-300 rounded-md shadow-sm" value="{{ old('symptoms') }}">
+                        <label for="symptoms" class="block text-sm font-medium text-gray-700 mb-1">Symptoms</label>
+                        <input type="text" id="symptoms" name="symptoms"
+                            placeholder="e.g. Cramps, Headache, Bloating"
+                            value="{{ old('symptoms') }}"
+                            class="w-full rounded-lg border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 text-sm">
                     </div>
+
                     <div>
-                        <label class="block text-gray-700 font-bold mb-2">Notes</label>
-                        <textarea name="notes" rows="4"
-                            class="w-full border-gray-300 rounded-md shadow-sm">{{ old('notes') }}</textarea>
+                        <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+                        <textarea id="notes" name="notes" rows="4"
+                            placeholder="Any additional notes..."
+                            class="w-full rounded-lg border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 text-sm">{{ old('notes') }}</textarea>
                     </div>
-                    <div class="flex items-center space-x-4">
+
+                    <div class="flex items-center gap-4 pt-2">
                         <button type="submit"
-                            class="bg-pink-600 text-white px-4 py-2 rounded shadow hover:bg-pink-700">Save Log</button>
-                        <a href="{{ route('periods.index') }}" class="text-gray-600 hover:underline">Cancel</a>
+                            class="bg-pink-600 hover:bg-pink-700 text-white font-medium px-6 py-2.5 rounded-lg shadow-sm transition text-sm">
+                            Save Log
+                        </button>
+                        <a href="{{ route('periods.index') }}"
+                            class="text-sm text-gray-500 hover:text-gray-700 hover:underline">Cancel</a>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
