@@ -16,3 +16,7 @@ Your personal, secure, and simple cycle tracker.
 6. Run the database migrations: `php artisan migrate`
 7. Compile frontend assets: `npm run dev`
 8. Start the local server: `php artisan serve`
+
+## Group Members:
+1. PACULAN, Aliya
+2. LAGPEY, Maxene
